@@ -1,0 +1,2 @@
+[console_scripts]
+noeud_bras = mon_bras.noeud_bras:main
