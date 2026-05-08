@@ -1,0 +1,4 @@
+float32[] nouvelles_positions
+---
+bool succes
+string message
