@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<robot name="mon_bras">
+
+    <!-- Base du bras -->
+    <link name="base">
+        <visual>
+            <geometry>
+                <box size="0.1 0.1 0.05"/>
+            </geometry>
+        </visual>
+    </link>
+
+    <!-- Premier lien -->
+    <link name="lien1">
+        <visual>
+            <geometry>
+                <cylinder radius="0.03" length="0.2"/>
+            </geometry>
+        </visual>
+    </link>
+
+    <!-- Joint entre base et lien1 -->
+    <joint name="joint1" type="fixed">
+        <parent link="base"/>
+        <child link="lien1"/>
+        <origin xyz="0 0 0.1"/>
+    </joint>
+
+</robot>

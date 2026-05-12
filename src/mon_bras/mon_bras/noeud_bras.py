@@ -1,6 +1,7 @@
 import rclpy
 from rclpy.node import Node
 from std_msgs.msg import Float32MultiArray
+from mon_bras_interfaces.srv import ChangerPositions
 
 
 class BrasRobotique(Node):
@@ -14,8 +15,15 @@ class BrasRobotique(Node):
             10
         )
 
+       
+        # Services
+        self.service = self.create_service(
+            ChangerPositions,
+            'changer_positions',
+            self.callback_changer_positions
+        )
 
-         
+
         self.positions = [1.0, 0.0, 3.0, 0.0, 5.0, 0.0]
 
         self.timer = self.create_timer(1.0, self.publier_positions)
@@ -29,6 +37,14 @@ class BrasRobotique(Node):
         msg.data = self.positions
         self.publisher_.publish(msg)
         self.get_logger().info(f"Positions publiées : {self.positions}")
+        
+
+    def callback_changer_positions(self, request, response):
+        self.positions = list(request.nouvelles_positions)
+        response.succes = True
+        response.message = "Positions changées avec succès !"
+        self.get_logger().info(f"Nouvelles positions : {self.positions}")
+        return response
 
 
 
