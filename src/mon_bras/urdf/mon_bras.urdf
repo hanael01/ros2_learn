@@ -189,4 +189,10 @@
         <limit lower="-3.14" upper="3.14" effort="10" velocity="1"/>
     </joint>
 
+    <gazebo>
+        <plugin filename="gz-sim-joint-state-publisher-system"
+            name="gz::sim::systems::JointStatePublisher">
+        </plugin>
+    </gazebo>
+
 </robot>
